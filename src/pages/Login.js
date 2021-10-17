@@ -24,7 +24,13 @@ import {FiMail, FiLock} from 'react-icons/fi';
 //Loader
 import Loader from 'react-loader-spinner';
 
-const Login = () => {
+//auth & redux
+import {connect} from 'react-redux';
+import {loginUser} from "./../auth/actions/userActions";
+import { useHistory } from 'react-router-dom';
+
+const Login = ({loginUser}) => {
+    const history = useHistory();
     return(
        <div>
            <StyledFormArea>
@@ -41,8 +47,9 @@ const Login = () => {
                             password:Yup.string().min(8, "Password is too short").max(30, "Password is too long").required("Required"),
                         })
                     }
-                    onSubmit={(values, {setSubmitting}) => {
+                    onSubmit={(values, {setSubmitting, setFieldError}) => {
                         console.log(values);
+                        loginUser(values, history, setFieldError, setSubmitting);
                     }}
                     >
                     {({isSubmitting})=>(
@@ -88,4 +95,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default connect(null, {loginUser})(Login);
