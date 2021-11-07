@@ -9,6 +9,7 @@
 
 .title{
     font-size: 95px;
+    text-transform: uppercase;
 }
 
 .intro-text{
@@ -17,7 +18,7 @@
 }
 
 .buttoncontainer{
-    margin-top: 50px;
+    margin-top: 55px;
     display: flex;
     justify-content: space-evenly;
 }
