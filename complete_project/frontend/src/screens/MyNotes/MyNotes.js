@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import {
   Button,
   Card,
@@ -8,11 +8,18 @@ import {
   useAccordionButton,
 } from "react-bootstrap";
 import MainScreen from "../../components/MainScreen";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { listNotes } from "../../actions/notesAtions";
+import Loading from "../../components/Loading";
+import ErrorMessage from "../../components/ErrorMessage";
 
 const MyNotes = () => {
-  const [notes, setNotes] = useState([]);
+  const dispatch = useDispatch();
+  const noteList = useSelector((state) => state.noteList);
+  const { loading, notes, error } = noteList;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure ?")) {
@@ -35,27 +42,26 @@ const MyNotes = () => {
     );
   }
 
-  const fetchNodes = async () => {
-    const { data } = await axios.get("/api/notes");
-
-    setNotes(data);
-  };
-
-  console.log(notes)
+  const history = useHistory();
 
   useEffect(() => {
-    fetchNodes();
-  }, []);
-
+    dispatch(listNotes());
+    if (!userInfo) {
+      history.push("/");
+    }
+  }, [dispatch]);
+  console.log(userInfo);
   return (
-    <MainScreen title="Welcome back Amir Rajabi">
-      <Link to="/createnote">
+    <MainScreen title={`Welcome dear ${userInfo && userInfo.name}..`}>
+      <p>{userInfo && userInfo.birthDate}</p>
+      {/* <Link to="/createnote">
         <Button style={{ marginLeft: 10, marginBottom: 6 }} size="lg">
           Create new Note
         </Button>
       </Link>
-
-      {notes.map((note) => (
+      {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+      {loading && <Loading />}
+      {notes?.map((note) => (
         <Accordion key={note._id}>
           <Card style={{ margin: 10 }}>
             <Card.Header style={{ display: "flex" }}>
@@ -75,9 +81,7 @@ const MyNotes = () => {
               </span>
 
               <div>
-                <Button href={`/note/${note._id}`} variamnt="primary">
-                  Edit
-                </Button>
+                <Button href={`/note/${note._id}`}>Edit</Button>
                 <Button
                   variant="danger"
                   className="mx-2"
@@ -96,14 +100,17 @@ const MyNotes = () => {
                 <blockquote className="blockquote mb-0">
                   <p>{note.content}</p>
                   <footer className="blockquote-footer">
-                    Created on - data
+                    Created on{" "}
+                    <cite title="Source Title">
+                      {note.createAt.substring(0, 10)}
+                    </cite>
                   </footer>
                 </blockquote>
               </Card.Body>
             </Accordion.Collapse>
           </Card>
         </Accordion>
-      ))}
+      ))} */}
     </MainScreen>
   );
 };
