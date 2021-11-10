@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useNavigate } from "react-router-dom";
 import {
   Button,
   Card,
@@ -42,7 +42,7 @@ const MyNotes = () => {
     );
   }
 
-  const history = useHistory();
+  const history = useNavigate();
 
   useEffect(() => {
     dispatch(listNotes());

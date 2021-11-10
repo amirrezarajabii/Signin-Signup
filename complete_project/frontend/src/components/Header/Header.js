@@ -8,11 +8,11 @@ import {
   Button,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useNavigate } from "react-router-dom";
 import { logout } from "../../actions/userActions";
 
 const Header = () => {
-  const history = useHistory();
+  const history = useNavigate();
 
   const dispatch = useDispatch();
 
