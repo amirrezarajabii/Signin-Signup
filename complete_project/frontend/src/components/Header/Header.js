@@ -8,11 +8,11 @@ import {
   Button,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory, useNavigate } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { logout } from "../../actions/userActions";
 
 const Header = () => {
-  const history = useNavigate();
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -33,7 +33,15 @@ const Header = () => {
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="m-auto">
-           
+            <Form className="d-flex">
+              <FormControl
+                type="search"
+                placeholder="Search"
+                className="me-2"
+                aria-label="Search"
+              />
+              <Button variant="outline-success">Search</Button>
+            </Form>
           </Nav>
           <Nav
             className="my-2 my-lg-0"
