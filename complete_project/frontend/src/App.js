@@ -12,17 +12,14 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <main>
-        <Routes>
-        <Route path="/" exact>
-        component={LandingPage}
-          </Route>
-        {/* <Route path="/login" component={LoginScreen} exact />
+    <Routes>
+
+      <Route path="/" component={LandingPage} exact />
+        <Route path="/login" component={LoginScreen} exact />
         <Route path="/register" component={RegisterScreen} exact />
         <Route path="/createnote" component={CreateNote} exact />
-        <Route path="/mynotes" component={() => <MyNotes />} /> */}
-        </Routes>
-      </main>
+        <Route path="/mynotes" component={() => <MyNotes />} />
+      </Routes>
       <Footer />
     </BrowserRouter>
   );
