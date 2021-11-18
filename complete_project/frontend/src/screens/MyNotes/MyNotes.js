@@ -26,6 +26,20 @@ const MyNotes = () => {
     }
   };
 
+  function getAge(dateString) {
+    var newAge = document.getElementById("testAge");
+    var today = new Date();
+    var birthDate = new Date(dateString);
+     newAge = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    {
+      newAge--;
+    }
+    return newAge;
+}
+console.log(getAge())
+
   function CustomToggle({ children, eventKey }) {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
       console.log("totally custom!")
@@ -50,11 +64,11 @@ const MyNotes = () => {
       history.push("/");
     }
   }, [dispatch]);
-  console.log(userInfo);
+
   return (
     <MainScreen title={`Welcome dear ${userInfo && userInfo.name}..`}>
-      <p>{userInfo && userInfo.birthDate}</p>
-      {/* <Link to="/createnote">
+      <p id="testAge">{userInfo && userInfo.birthDate}</p>
+      <Link to="/createnote">
         <Button style={{ marginLeft: 10, marginBottom: 6 }} size="lg">
           Create new Note
         </Button>
@@ -110,7 +124,7 @@ const MyNotes = () => {
             </Accordion.Collapse>
           </Card>
         </Accordion>
-      ))} */}
+      ))}
     </MainScreen>
   );
 };

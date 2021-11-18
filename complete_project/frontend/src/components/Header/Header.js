@@ -28,12 +28,12 @@ const Header = () => {
     <Navbar bg="primary" expand="lg" variant="dark">
       <Container fluid>
         <Navbar.Brand href="/">
-          <Link to="/">MyProject</Link>
+          <Link to="/">MyWbsite</Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="m-auto">
-            <Form className="d-flex">
+            {/* <Form className="d-flex">
               <FormControl
                 type="search"
                 placeholder="Search"
@@ -41,7 +41,7 @@ const Header = () => {
                 aria-label="Search"
               />
               <Button variant="outline-success">Search</Button>
-            </Form>
+            </Form> */}
           </Nav>
           <Nav
             className="my-2 my-lg-0"
@@ -49,9 +49,11 @@ const Header = () => {
             navbarScroll
           >
             <Nav.Link href="/mynotes">
-              <Link to="/mynotes">My Page</Link>
+              <Link to="/mynotes">Profile</Link>
             </Nav.Link>
-            <NavDropdown title="amir rajabi" id="basic-nav-dropdown">
+            <NavDropdown 
+            title={`${userInfo && userInfo.name}`}
+            id="basic-nav-dropdown">
               <NavDropdown.Item href="#action3">My Profile</NavDropdown.Item>
               <NavDropdown.Item
                 onClick={logoutHandler}
