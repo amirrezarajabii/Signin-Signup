@@ -11,7 +11,7 @@ const reducer = combineReducers({
   noteCreate:noteCreateReducer,
 });
 
-const userInfoFormStorage = localStorage.getItem("userinfo")
+const userInfoFormStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 

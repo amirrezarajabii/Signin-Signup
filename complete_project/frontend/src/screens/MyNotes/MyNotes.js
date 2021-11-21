@@ -26,20 +26,6 @@ const MyNotes = () => {
     }
   };
 
-  function getAge(dateString) {
-    var newAge = document.getElementById("testAge");
-    var today = new Date();
-    var birthDate = new Date(dateString);
-     newAge = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
-    {
-      newAge--;
-    }
-    return newAge;
-}
-console.log(getAge())
-
   function CustomToggle({ children, eventKey }) {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
       console.log("totally custom!")
@@ -64,7 +50,7 @@ console.log(getAge())
       history.push("/");
     }
   }, [dispatch]);
-
+  
   return (
     <MainScreen title={`Welcome dear ${userInfo && userInfo.name}..`}>
       <p id="testAge">{userInfo && userInfo.birthDate}</p>

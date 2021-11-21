@@ -17,7 +17,7 @@ function App() {
     <Route path='/login' component={LoginScreen} exact/>
     <Route path='/register' component={RegisterScreen} exact/>
     <Route path='/createnote' component={CreateNote} exact/>
-    <Route path='/mynotes' component={() => <MyNotes/>}/>
+    <Route path='/notes' component={() => <MyNotes/>}/>
     </main>
     <Footer/>
     </BrowserRouter>

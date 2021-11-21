@@ -48,8 +48,8 @@ const Header = () => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="/mynotes">
-              <Link to="/mynotes">Profile</Link>
+            <Nav.Link href="/notes">
+              <Link to="/notes">Profile</Link>
             </Nav.Link>
             <NavDropdown 
             title={`${userInfo && userInfo.name}`}

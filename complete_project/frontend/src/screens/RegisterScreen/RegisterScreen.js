@@ -22,7 +22,7 @@ function RegisterScreen({ history }) {
 
   useEffect(() => {
    if(userInfo){
-     history.push("/mynotes");
+     history.push("/notes");
    }
   }, [history, userInfo])
 
